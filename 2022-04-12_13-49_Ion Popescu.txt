@@ -1,0 +1,9 @@
+Client name: Ion Popescu
+Address: Str. Salcamului nr. 14
+Email: ionpopescu@gmail.com
+
+Product: Chair
+Quantity: 1
+Price per unit: 151
+
+Total cost: 151

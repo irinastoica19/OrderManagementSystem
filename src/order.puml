@@ -1,0 +1,207 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+set namespaceSeparator ::
+namespace org.example {
+    namespace bll {
+        class ClientBLL{
+            -validator : Validator<Client>
+            -clientDAO : ClientDAO
+            +findAll() : List<Client>
+            +insertClient(String name, String address, String email)
+            +findClientById(String idString) : Client
+            +updateClient(String idString, String name, String address, String email)
+            +deleteClient(Integer id)
+        }
+
+        class ProductBLL{
+            -validator : Validator<Product>
+            -productDAO : ProductDAO
+            +findAll() : List<Product>
+            +insertProduct(String name, String priceString, String quantityString)
+            +findProductById(String idString) : Product
+            +updateProduct(String idString, String name, String priceString, String quantityString)
+            +deleteClient(Integer id)
+        }
+        class OrderBLL{
+            -validator : Validator<Product>
+            -productDAO : ProductDAO
+            -clientDAO : ClientDAO
+            +addOrder(Client client, Product product, String quantityString)
+            +validateStock(Orders orders, Product product)
+            +generateBill(Client client, Product product, Integer quantity)
+        }
+        namespace validators {
+            class EmailValidator<Client>{
+                -EMAIL_PATTERN : String
+                +validate(Client t)
+            }
+            class NumberValidator<Product>{
+                +validate(Product p)
+            }
+            class QuantityValidator<Orders>{
+                 +validate(Orders orders)
+            }
+            interface Validator<T>{
+                 +validate(T t)
+            }
+            Validator <|.. EmailValidator
+            Validator <|.. QuantityValidator
+            Validator <|.. NumberValidator
+            }
+        }
+    namespace model {
+        class Client{
+           -id : Integer
+           -name : String
+           -address : String
+           -email : String
+        }
+
+        class Product{
+            -id : Integer
+            -name : String
+            -price : Integer
+            -quantity : Integer
+        }
+
+        class Orders{
+            -id : Integer
+            -clientId : Integer
+            -productId : Integer
+            -quantity : Integer
+        }
+    }
+
+    namespace connection {
+        class Connection{
+            -LOGGER : Logger
+            -DRIVER : String
+            -DBURL : String
+            -USER : String
+            -PASS : String
+            -createConnection() : Connection
+            +getConnection() : Connection
+            +close(Statement statement)
+            +close(ResultSet resultSet)
+        }
+    }
+    namespace dao{
+        class AbstractDAO<T>{
+            #LOGGER : Logger
+            -type : Class<T>
+            -createSelectQuery() : String
+            -createSelectAllQuery() : String
+            -createDeleteQuery() : String
+            -createInsertQuery() : String
+            -createUpdateQuery() : String
+            -createObjects(ResultSet resultSet) : List<T>
+            +findAll() : List<T>
+            +findById(int id) : T
+            +insert(T t)
+            +delete(int id)
+            +update(T t)
+        }
+
+        class ClientDAO<Client>
+        class ProductDAO<Product>
+        class OrderDAO<Orders>
+
+        AbstractDAO <|-- ClientDAO
+        AbstractDAO <|-- ProductDAO
+        AbstractDAO <|-- OrderDAO
+    }
+    namespace presentation{
+    class App{
+        -scene : Scene
+        +start(Stage stage)
+        +setRoot(String fxml)
+        +loadFXML(String fxml) : Parent
+        +main(String[] args)
+    }
+
+    class ClientController{
+        -clientTableView : TableView<Client>
+        -addNameTextField : TextField
+        -addAddressTextField : TextField
+        -addEmailTextField : TextField
+        -deleteIdTextField : TextField
+        -updateIdTextField : TextField
+        -updateNameTextField : TextField
+        -updateAddressTextField : TextField
+        -updateEmailTextField : TextField
+        -clientBLL : ClientBLL
+        -TableGenerator<Client> : clientTableGenerator
+        -switchToMainMenu()
+        -initialize()
+        -addClient()
+        -deleteClient()
+        -updateClient()
+        -refreshTable()
+    }
+
+    class ProductController{
+        -productTableView : TableView<Product>
+        -addNameTextField : TextField
+        -addPriceTextField : TextField
+        -addQuantityTextField : TextField
+        -deleteIdTextField : TextField
+        -updateIdTextField : TextField
+        -updateNameTextField : TextField
+        -updatePriceTextField : TextField
+        -updateQuantityTextField : TextField
+        -productBLL : ProductBLL
+        -TableGenerator<Product> : productTableGenerator
+        -switchToMainMenu()
+        -initialize()
+        -addProduct()
+        -deleteProduct()
+        -updateProduct()
+        -refreshTable()
+    }
+
+    class OrderController {
+        -clientTableView : TableView<Client>
+        -productTableView : TableView<Product>
+        -clientLabel : Label
+        -productLabel : Label
+        -quantityTextField : TextField
+        -productBLL : ProductBLL
+        -clientBLL : ClientBLL
+        -orderBLL : OrderBLL
+        -product : Product
+        -client : Client
+        -productTableGenerator : TableGenerator<Product>
+        -clientTableGenerator : TableGenerator<Client>
+        -switchToMainMenu()
+        -initialize()
+        -showSelectedClient()
+        -showSelectedProduct()
+        -makeOrder()
+        -refreshTable()
+    }
+
+    class ViewController{
+        -closeButton : Button
+        -switchToClientView()
+        -switchToProductView()
+        -switchToOrderView()
+        -closeButtonAction()
+    }
+
+    class TableGenerator<T>{
+        -observableList : ObservableList<T>
+        +generateTableHeader(List<T> objects, TableView<T> tableView)
+        +reloadTableValues(List<T> objects, TableView<T> tableView)
+        +showSelectedRow(TableView<T> tableView) : T
+    }
+
+    class PopUpWindow {
+        +displayError(String error)
+    }
+    }
+
+
+}
+
+@enduml

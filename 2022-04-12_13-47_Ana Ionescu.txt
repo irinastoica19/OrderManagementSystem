@@ -1,0 +1,9 @@
+Client name: Ana Ionescu
+Address: Str. Margaretelor nr.56
+Email: anaionescu@gmail.com
+
+Product: Vacuum cleaner
+Quantity: 1
+Price per unit: 350
+
+Total cost: 350

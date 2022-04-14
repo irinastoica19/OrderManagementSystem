@@ -1,0 +1,9 @@
+Client name: Alex Moise
+Address: Str. Salcilor nr.28
+Email: alexmoise@gmail.com
+
+Product: Blender
+Quantity: 1
+Price per unit: 100
+
+Total cost: 100

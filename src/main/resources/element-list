@@ -1,0 +1,7 @@
+module:org.example
+org.example.bll
+org.example.bll.validators
+org.example.connection
+org.example.dao
+org.example.model
+org.example.presentation

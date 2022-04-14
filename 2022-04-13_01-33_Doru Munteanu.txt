@@ -1,0 +1,9 @@
+Client name: Doru Munteanu
+Address: Str. Lalelelor nr.17
+Email: dorumunteanu@gmail.com
+
+Product: Blender
+Quantity: 2
+Price per unit: 100
+
+Total cost: 200

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="850.0" spacing="20.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.presentation.ClientController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <Label text="Clients">
+        <font>
+        <Font size="24.0"/>
+        </font>
+    </Label>
+    <HBox>
+        <ScrollPane prefHeight="498.0" prefWidth="533.0">
+            <TableView fx:id="clientTableView" layoutX="1.0" layoutY="-2.0" prefHeight="498.0"
+                       prefWidth="516.0"/>
+        </ScrollPane>
+        <AnchorPane prefHeight="498.0" prefWidth="272.0">
+            <Label layoutX="14.0" layoutY="14.0" text="Add Client">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <TextField fx:id="addNameTextField" layoutX="12.0" layoutY="41.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="Enter name"/>
+            <TextField fx:id="addEmailTextField" layoutX="12.0" layoutY="125.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="Enter email"/>
+            <TextField fx:id="addAddressTextField" layoutX="12.0" layoutY="83.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="Enter address"/>
+            <Button layoutX="110.0" layoutY="162.0" mnemonicParsing="false" onAction="#addClient"
+                    prefHeight="31.0" prefWidth="61.0" text="ADD"/>
+            <Label layoutX="12.0" layoutY="203.0" text="Delete Client">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <TextField fx:id="deleteIdTextField" layoutX="12.0" layoutY="234.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="id"/>
+            <Button layoutX="101.0" layoutY="272.0" mnemonicParsing="false" onAction="#deleteClient"
+                    prefHeight="31.0" prefWidth="78.0" text="DELETE"/>
+            <Label layoutX="16.0" layoutY="306.0" text="Update Client">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <TextField fx:id="updateIdTextField" layoutX="140.0" layoutY="306.0" prefHeight="31.0"
+                       prefWidth="78.0" promptText="id"/>
+            <TextField fx:id="updateNameTextField" layoutX="16.0" layoutY="344.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="New name"/>
+            <TextField fx:id="updateAddressTextField" layoutX="16.0" layoutY="384.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="New address"/>
+            <TextField fx:id="updateEmailTextField" layoutX="16.0" layoutY="425.0" prefHeight="31.0"
+                       prefWidth="254.0" promptText="New email"/>
+            <Button layoutX="103.0" layoutY="467.0" mnemonicParsing="false" onAction="#updateClient"
+                    text="UPDATE"/>
+        </AnchorPane>
+    </HBox>
+    <Button fx:id="secondaryButton" onAction="#switchToMainMenu" text="Back"/>
+</VBox>
