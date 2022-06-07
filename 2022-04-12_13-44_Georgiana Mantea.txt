@@ -1,9 +1,0 @@
-Client name: Georgiana Mantea
-Address: Str. Gladiolelor nr. 73
-Email: georgianam@gmail.com
-
-Product: Blender
-Quantity: 3
-Price per unit: 100
-
-Total cost: 300
